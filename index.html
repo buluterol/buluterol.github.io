@@ -11,7 +11,7 @@
 				font-family: 'Courier New', Courier, monospace;
 				display: flex;
 				flex-direction: column;
-				justify-content: center;
+				justify-content: flex-start;
 				align-items: flex-start;
 				height: 100vh;
 				padding: 40px;
@@ -46,9 +46,67 @@
 		<div class="terminal-line">&gt; WELCOME ABOARD</div>
 		<div class="terminal-line">&gt;
 			<a href="./sql-drawer" target="_blank">sql-drawer</a>
+			<a href="https://github.com/buluterol/sql-drawer" target="_blank">[repo: buluterol/sqldrawer]</a>
 		</div>
-		<div class="terminal-line">&gt;
+		<div class="terminal-line" id="input-line">&gt;
+			<span id="user-input"></span>
 			<span class="cursor"></span>
 		</div>
+		<script>
+			function getActiveInput() {
+return document.getElementById('user-input');
+}
+function getActiveInputLine() {
+return document.getElementById('input-line');
+}
+const body = document.body;
+
+document.addEventListener('keydown', function (e) {
+let userInput = getActiveInput();
+let inputLine = getActiveInputLine();
+
+// Enter tuşu için özel durum
+if (e.key === 'Enter') {
+// Eğer zaten bir Access Denied satırı ve yeni input satırı varsa tekrar oluşturma
+// (Yani sadece en alttaki input satırı aktif olacak)
+// Önce eski input satırındaki cursor'u kaldır
+const oldCursor = inputLine.querySelector('.cursor');
+if (oldCursor) 
+oldCursor.style.display = 'none';
+
+inputLine.removeAttribute('id');
+userInput.removeAttribute('id');
+
+// Access Denied mesajı ekle
+const deniedLine = document.createElement('div');
+deniedLine.className = 'terminal-line';
+deniedLine.textContent = 'Access Denied';
+body.appendChild(deniedLine);
+
+// Yeni input satırı oluştur
+const newLine = document.createElement('div');
+newLine.className = 'terminal-line';
+newLine.setAttribute('id', 'input-line');
+newLine.innerHTML = '&gt; <span id="user-input"></span><span class="cursor"></span>';
+body.appendChild(newLine);
+
+// Scroll en alta
+window.scrollTo(0, document.body.scrollHeight);
+
+e.preventDefault();
+return;
+}
+
+// Handle printable characters
+if (e.key.length === 1 && ! e.ctrlKey && ! e.metaKey && ! e.altKey) {
+userInput.textContent += e.key;
+}
+// Handle Backspace
+if (e.key === 'Backspace') {
+userInput.textContent = userInput.textContent.slice(0, -1);
+e.preventDefault();
+}
+});
+		</script>
 	</body>
 </html>
