@@ -1,3 +1,6 @@
 [submodule "sql-drawer"]
   path = sql-drawer
   url = https://github.com/buluterol/sql-drawer.git
+[submodule "simple-php-mvc"]
+	path = simple-php-mvc
+	url = https://github.com/buluterol/simple-php-mvc.git
