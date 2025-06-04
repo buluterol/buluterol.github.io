@@ -15,7 +15,7 @@ function typeEffect(element, text, callback) {
             clearInterval(interval);
             if (callback) callback();
         }
-    }, 50); // Harfler arasındaki gecikme (ms)
+    }, 20); // Harfler arasındaki gecikme (ms)
 }
 
 async function fetchResponses() {
