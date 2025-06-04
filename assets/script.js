@@ -6,6 +6,24 @@ function getActiveInputLine() {
 }
 const body = document.body;
 
+let autoScrollEnabled = true;
+
+// Scroll durumunu kontrol eden işlev
+function handleScroll() {
+    const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
+    autoScrollEnabled = atBottom;
+}
+
+// Yazı yazılırken otomatik scroll işlevi
+function scrollToBottom() {
+    if (autoScrollEnabled) {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+}
+
+// Scroll olayını dinle
+window.addEventListener('scroll', handleScroll);
+
 function typeEffect(element, text, callback) {
     if (!text || typeof text !== 'string') {
         // Eğer text düz yazı değilse, callback'i çağır ve işlemi sonlandır
@@ -17,6 +35,7 @@ function typeEffect(element, text, callback) {
     const interval = setInterval(() => {
         element.textContent += text[index];
         index++;
+        scrollToBottom(); // Her harf yazıldığında scroll kontrolü
         if (index === text.length) {
             clearInterval(interval);
             if (callback) callback();
@@ -81,9 +100,7 @@ document.addEventListener('keydown', async function (e) {
         inputLine.removeAttribute('id');
         userInput.removeAttribute('id');
 
-        // Scroll en alta
-        window.scrollTo(0, document.body.scrollHeight);
-
+        scrollToBottom(); // Yeni satır eklendiğinde scroll kontrolü
         e.preventDefault();
         return;
     }
@@ -91,6 +108,7 @@ document.addEventListener('keydown', async function (e) {
     // Handle printable characters
     if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
         userInput.textContent += e.key;
+        scrollToBottom(); // Yazı yazılırken scroll kontrolü
     }
     // Handle Backspace
     if (e.key === 'Backspace') {
