@@ -6,6 +6,18 @@ function getActiveInputLine() {
 }
 const body = document.body;
 
+function typeEffect(element, text, callback) {
+    let index = 0;
+    const interval = setInterval(() => {
+        element.textContent += text[index];
+        index++;
+        if (index === text.length) {
+            clearInterval(interval);
+            if (callback) callback();
+        }
+    }, 50); // Harfler arasındaki gecikme (ms)
+}
+
 async function fetchResponses() {
     const response = await fetch('assets/responses.json');
     return response.json();
@@ -23,23 +35,33 @@ document.addEventListener('keydown', async function (e) {
         if (responses[inputText]) {
             const response = responses[inputText];
             if (Array.isArray(response)) {
-                response.forEach(item => {
+                for (const item of response) {
                     const line = document.createElement('div');
                     line.className = 'terminal-line';
-                    if (typeof item === 'string') {
-                        line.textContent = item;
-                    } else if (item.url) {
-                        line.innerHTML = `&nbsp;&nbsp;&nbsp;&nbsp;<a href="${item.url}" target="_blank">${item.text}</a>`;
-                    }
                     body.appendChild(line);
-                });
+
+                    if (typeof item === 'string') {
+                        await new Promise(resolve => typeEffect(line, item, resolve));
+                    } else if (item.url) {
+                        const link = document.createElement('a');
+                        link.href = item.url;
+                        link.target = '_blank';
+                        link.textContent = item.text;
+                        await new Promise(resolve => {
+                            typeEffect(line, '', () => {
+                                line.appendChild(link);
+                                resolve();
+                            });
+                        });
+                    }
+                }
             }
         } else {
             // Access Denied mesajı ekle
             const deniedLine = document.createElement('div');
             deniedLine.className = 'terminal-line';
-            deniedLine.textContent = 'Access Denied';
             body.appendChild(deniedLine);
+            await new Promise(resolve => typeEffect(deniedLine, 'Access Denied', resolve));
         }
 
         // Yeni input satırı oluştur
