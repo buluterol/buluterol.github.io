@@ -32,7 +32,8 @@
         "For the past two years, I have been providing web software solutions to corporate companies through my own company, billing them accordingly.",
         "These solutions include store cash register inventory tracking, ERP, e-commerce, custom-designed websites, customer relationship management software, custom CMS, and more.",
         "I have a strong command of PHP, Java, and JavaScript languages, and I have intermediate-level proficiency in Python.",
-        "Before establishing my own sole proprietorship, I also worked as a freelancer without invoicing for some projects, some of which were obtained through platforms like Bionluk, while others were acquired through local connections.",
+        "Before establishing my own sole proprietorship, I also worked as a freelancer without invoicing for some projects,",
+        "some of which were obtained through platforms like Bionluk, while others were acquired through local connections.",
         "I have been actively working in the industry for approximately 8 years.",
         "I have clients not only from Turkey but also from all around the world.",
         "I have an English proficiency level of C2."
@@ -45,21 +46,17 @@
         {
             "text": "simple-php-mvc [repo: buluterol/simple-php-mvc]",
             "url": "https://github.com/buluterol/simple-php-mvc"
-        },
-        {
-            "text": "next-project [repo: buluterol/next-project]",
-            "url": "https://github.com/buluterol/next-project"
         }
     ],
     "skills": [
         "Languages: PHP, Java, JavaScript, Python (intermediate)",
-        "Frameworks: Laravel, React",
-        "Tools: Docker, Git, VS Code"
+        "Frameworks: Symfony, Laravel, React, Vue, Electron",
+        "Tools: Docker, Git, VS Code, Figma"
     ],
     "social": [
         {
             "text": "Twitter: @buluterol",
-            "url": "https://twitter.com/buluterol"
+            "url": "https://twitter.com/buluteroll"
         },
         {
             "text": "GitHub: buluterol",
@@ -71,31 +68,11 @@
         }
     ],
     "contact": [
-        "Email: erol.bulut@turkpin.com",
+        "Email: buluteroll.dev@gmail.com",
         {
             "text": "Contact Form",
             "url": "https://buluterol.dev/contact"
         }
-    ],
-    "blog": [
-        {
-            "text": "Understanding PHP MVC - My Approach",
-            "url": "https://buluterol.dev/blog/php-mvc-approach"
-        },
-        {
-            "text": "Building a Terminal UI in JS",
-            "url": "https://buluterol.dev/blog/terminal-ui"
-        }
-    ],
-    "clear": [
-        "Terminal cleared."
-    ],
-    "ascii-art": [
-        "    ____        _     _         ",
-        "   |  _ \\ _   _| |__ | | ___ ___",
-        "   | |_) | | | | '_ \\| |/ _ / __|",
-        "   |  __/| |_| | |_) | |  __\\__ \\",
-        "   |_|    \\__,_|_.__/|_|\\___|___/"
     ],
     "quote": [
         "“Code is like humor. When you have to explain it, it’s bad.” – Cory House",

@@ -7,6 +7,12 @@ function getActiveInputLine() {
 const body = document.body;
 
 function typeEffect(element, text, callback) {
+    if (!text || typeof text !== 'string') {
+        // Eğer text düz yazı değilse, callback'i çağır ve işlemi sonlandır
+        if (callback) callback();
+        return;
+    }
+    document.querySelectorAll('.cursor').forEach(cursor => cursor.style.display = 'none');
     let index = 0;
     const interval = setInterval(() => {
         element.textContent += text[index];
@@ -21,6 +27,7 @@ function typeEffect(element, text, callback) {
 async function fetchResponses() {
     const response = await fetch('assets/responses.json');
     return response.json();
+    // return responseJson; // Örnek olarak, doğrudan JSON verisini kullanıyoruz
 }
 
 document.addEventListener('keydown', async function (e) {
@@ -41,18 +48,15 @@ document.addEventListener('keydown', async function (e) {
                     body.appendChild(line);
 
                     if (typeof item === 'string') {
+                        // Düz yazı için typeEffect
                         await new Promise(resolve => typeEffect(line, item, resolve));
-                    } else if (item.url) {
+                    } else if (typeof item === 'object' && item.url) {
+                        // Link için doğrudan işleme
                         const link = document.createElement('a');
                         link.href = item.url;
                         link.target = '_blank';
                         link.textContent = item.text;
-                        await new Promise(resolve => {
-                            typeEffect(line, '', () => {
-                                line.appendChild(link);
-                                resolve();
-                            });
-                        });
+                        line.appendChild(link);
                     }
                 }
             }
