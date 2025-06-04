@@ -1,0 +1,21 @@
+{
+    "help": [
+        "Available commands:",
+        "whoareyou - Displays information about the developer",
+        "help - Lists all available commands"
+    ],
+    "whoareyou": [
+        {
+            "text": "buluterol.dev",
+            "url": "https://buluterol.dev"
+        },
+        {
+            "text": "instagram: buluterol",
+            "url": "https://instagram.com/buluterol"
+        },
+        {
+            "text": "LinkedIn: buluteroldev",
+            "url": "https://linkedin.com/in/buluteroldev"
+        }
+    ]
+}
