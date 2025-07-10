@@ -4,3 +4,6 @@
 [submodule "simple-php-mvc"]
 	path = simple-php-mvc
 	url = https://github.com/buluterol/simple-php-mvc.git
+[submodule "api-connection-example"]
+	path = api-connection-example
+	url = https://github.com/buluterol/api-connection-example

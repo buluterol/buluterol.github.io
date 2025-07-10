@@ -115,4 +115,10 @@ document.addEventListener('keydown', async function (e) {
         userInput.textContent = userInput.textContent.slice(0, -1);
         e.preventDefault();
     }
+
+    // Handle Escape key
+    if (e.key === 'Escape') {
+        window.location.href = '/ui.html';
+        e.preventDefault();
+    }
 });
